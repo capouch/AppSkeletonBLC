@@ -61,6 +61,7 @@ public class SkeletonActivity extends Form implements HandlesEventDispatching {
      saveButton = new Button(line1,"Save"); 
      retrieveButton = new Button(line1, "Retrieve");
      inputBox = new TextBox(line2);
+     inputBox.NumbersOnly(true);
      resultLabel = new Label(line2,"");
      
      
