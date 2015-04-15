@@ -42,6 +42,7 @@ public class SkeletonActivity extends Form implements HandlesEventDispatching {
 	
 	// Variable to hold our saved value for later retrieval
 	private int savedValue;
+	private String tempString;
 	
 	private Label resultLabel;
 
@@ -79,9 +80,10 @@ public class SkeletonActivity extends Form implements HandlesEventDispatching {
  	// This code is equivalent to the "Blocks" part of App Inventor
 	    if (component.equals(saveButton) && eventName.equals("Click")){
 	    	savedValue = Integer.parseInt(inputBox.Text());
-	    	resultLabel.Text(inputBox.Text());
+	    	tempString = Integer.toString(savedValue);
+	    	resultLabel.Text(tempString);
 	        return true;
-	     } // end dispatch '+' press
+	     } // 
 	
 	// This line is syntactically required
     return true;
