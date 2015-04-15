@@ -35,7 +35,7 @@ public class SkeletonActivity extends Form implements HandlesEventDispatching {
 	private HorizontalArrangement line1;
 	private HorizontalArrangement line2;
 
-	// Next our two components
+	// Next our three components
 	private Button retrieveButton;
 	private Button saveButton;
 	private TextBox inputBox;
