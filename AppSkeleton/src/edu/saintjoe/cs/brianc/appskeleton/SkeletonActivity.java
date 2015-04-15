@@ -80,11 +80,18 @@ public class SkeletonActivity extends Form implements HandlesEventDispatching {
  	// This code is equivalent to the "Blocks" part of App Inventor
 	    if (component.equals(saveButton) && eventName.equals("Click")){
 	    	savedValue = Integer.parseInt(inputBox.Text());
+	    	// tempString = Integer.toString(savedValue);
+	    	resultLabel.Text("Input value has been saved");
+	    	inputBox.Text("");
+	        return true;
+	     } // 
+	    
+	    if (component.equals(retrieveButton) && eventName.equals("Click")){
+	    	resultLabel.Text("");
 	    	tempString = Integer.toString(savedValue);
 	    	resultLabel.Text(tempString);
 	        return true;
 	     } // 
-	
 	// This line is syntactically required
     return true;
 	} // end dispatchEvent
