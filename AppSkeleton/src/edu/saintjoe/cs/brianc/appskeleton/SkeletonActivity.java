@@ -5,18 +5,22 @@ package edu.saintjoe.cs.brianc.appskeleton;
 
 /* App Skeleton
  * Written by Brian Capouch 17 March 2015
- * This app will serve as the basis for student project apps
+ * This is my demonstration copy for in class
+ *    - we are going to add a getter and a setter to our app class
+ *    13 April 2015
+ *    - Upgraded to the new Java Bridge API 24 December 2015
  */
 
 // Import directives tell Eclipse which components you intend to use
-import com.google.devtools.simple.runtime.components.Component;
-import com.google.devtools.simple.runtime.components.HandlesEventDispatching;
-import com.google.devtools.simple.runtime.components.android.Button;
-import com.google.devtools.simple.runtime.components.android.Form;
-import com.google.devtools.simple.runtime.components.android.Label;
-import com.google.devtools.simple.runtime.components.android.HorizontalArrangement;
+import com.google.appinventor.components.runtime.Component;
+import com.google.appinventor.components.runtime.HandlesEventDispatching;
+import com.google.appinventor.components.runtime.Button;
+import com.google.appinventor.components.runtime.Form;
+import com.google.appinventor.components.runtime.Label;
+import com.google.appinventor.components.runtime.HorizontalArrangement;
+import com.google.appinventor.components.runtime.TextBox;
 
-import com.google.devtools.simple.runtime.events.EventDispatcher;
+import com.google.appinventor.components.runtime.EventDispatcher;
 
 // This is the only class file for our app
 public class SkeletonActivity extends Form implements HandlesEventDispatching {
@@ -32,12 +36,19 @@ public class SkeletonActivity extends Form implements HandlesEventDispatching {
 	private HorizontalArrangement line1;
 	private HorizontalArrangement line2;
 
-	// Next our two components
-	private Button dumbButton;
+	// Next our three components
+	private Button retrieveButton;
+	private Button saveButton;
+	private TextBox inputBox;
+	
+	// Variable to hold our saved value for later retrieval
+	private int savedValue;
+	private String tempString;
+	
 	private Label resultLabel;
 
  // Java Bridger apps all use $define() in place of main()
- void $define() {
+ protected void $define() {
  	
  	// Code in this block is equivalent to the "Designer" part of App Inventor
     
@@ -49,8 +60,14 @@ public class SkeletonActivity extends Form implements HandlesEventDispatching {
      line2 = new HorizontalArrangement(this);
      
      // Now create the user interface
-     dumbButton = new Button(line1,"Empujeme");   
-     resultLabel = new Label(line2,"");
+     saveButton = new Button(line1);
+     saveButton.Text("Save");
+     retrieveButton = new Button(line1);
+     retrieveButton.Text("Retrieve");
+     inputBox = new TextBox(line2);
+     inputBox.NumbersOnly(true);
+     resultLabel = new Label(line2);
+     resultLabel.Text("");
      
      
      // Let the runtime system know which events to report to the dispatcher
@@ -65,11 +82,20 @@ public class SkeletonActivity extends Form implements HandlesEventDispatching {
          Object[] args) {
  	
  	// This code is equivalent to the "Blocks" part of App Inventor
-	    if (component.equals(dumbButton) && eventName.equals("Click")){
-	    	resultLabel.Text("Empujado!!");
+	    if (component.equals(saveButton) && eventName.equals("Click")){
+	    	savedValue = Integer.parseInt(inputBox.Text());
+	    	// tempString = Integer.toString(savedValue);
+	    	resultLabel.Text("Input value has been saved");
+	    	inputBox.Text("");
 	        return true;
-	     } // end dispatch '+' press
-	
+	     } // 
+	    
+	    if (component.equals(retrieveButton) && eventName.equals("Click")){
+	    	resultLabel.Text("");
+	    	tempString = Integer.toString(savedValue);
+	    	resultLabel.Text(tempString);
+	        return true;
+	     } // 
 	// This line is syntactically required
     return true;
 	} // end dispatchEvent
