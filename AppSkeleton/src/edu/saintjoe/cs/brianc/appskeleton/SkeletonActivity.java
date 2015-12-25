@@ -6,20 +6,21 @@ package edu.saintjoe.cs.brianc.appskeleton;
 /* App Skeleton
  * Written by Brian Capouch 17 March 2015
  * This is my demonstration copy for in class
- *    we are going to add a getter and a setter to our app class
+ *    - we are going to add a getter and a setter to our app class
  *    13 April 2015
+ *    - Upgraded to the new Java Bridge API 24 December 2015
  */
 
 // Import directives tell Eclipse which components you intend to use
-import com.google.devtools.simple.runtime.components.Component;
-import com.google.devtools.simple.runtime.components.HandlesEventDispatching;
-import com.google.devtools.simple.runtime.components.android.Button;
-import com.google.devtools.simple.runtime.components.android.Form;
-import com.google.devtools.simple.runtime.components.android.Label;
-import com.google.devtools.simple.runtime.components.android.HorizontalArrangement;
-import com.google.devtools.simple.runtime.components.android.TextBox;
+import com.google.appinventor.components.runtime.Component;
+import com.google.appinventor.components.runtime.HandlesEventDispatching;
+import com.google.appinventor.components.runtime.Button;
+import com.google.appinventor.components.runtime.Form;
+import com.google.appinventor.components.runtime.Label;
+import com.google.appinventor.components.runtime.HorizontalArrangement;
+import com.google.appinventor.components.runtime.TextBox;
 
-import com.google.devtools.simple.runtime.events.EventDispatcher;
+import com.google.appinventor.components.runtime.EventDispatcher;
 
 // This is the only class file for our app
 public class SkeletonActivity extends Form implements HandlesEventDispatching {
@@ -47,7 +48,7 @@ public class SkeletonActivity extends Form implements HandlesEventDispatching {
 	private Label resultLabel;
 
  // Java Bridger apps all use $define() in place of main()
- void $define() {
+ protected void $define() {
  	
  	// Code in this block is equivalent to the "Designer" part of App Inventor
     
@@ -59,11 +60,14 @@ public class SkeletonActivity extends Form implements HandlesEventDispatching {
      line2 = new HorizontalArrangement(this);
      
      // Now create the user interface
-     saveButton = new Button(line1,"Save"); 
-     retrieveButton = new Button(line1, "Retrieve");
+     saveButton = new Button(line1);
+     saveButton.Text("Save");
+     retrieveButton = new Button(line1);
+     retrieveButton.Text("Retrieve");
      inputBox = new TextBox(line2);
      inputBox.NumbersOnly(true);
-     resultLabel = new Label(line2,"");
+     resultLabel = new Label(line2);
+     resultLabel.Text("");
      
      
      // Let the runtime system know which events to report to the dispatcher
